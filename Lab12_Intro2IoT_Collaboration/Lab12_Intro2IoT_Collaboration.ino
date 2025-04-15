@@ -28,7 +28,7 @@ void loop() {
     Serial.println("LED: OFF");
   }
 
-  delay(200);  // basic debounce + sampling interval
+  delay(1000);  // basic debounce + sampling interval
 }
 
 // ===============================
@@ -39,7 +39,7 @@ bool isRoomDark() {
   Serial.println(lightLevel);
 
   // TODO: Fix this logic so it returns true when it's dark
-  if (lightLevel < 100) return true;
+  if (lightLevel < darkThreshold) return true;
   else return false;
 }
 
@@ -53,12 +53,12 @@ bool isButtonActivated() {
   // TODO: Fix this logic and print the correct status
   if (state == HIGH) {
     // Button not pressed
-    Serial.println("true");
-    return true;
-  } else {
-    // Button pressed
     Serial.println("false");
     return false;
+  } else {
+    // Button pressed
+    Serial.println("true");
+    return true;
   }
 
   // HINT: Serial.print should say "ON" or "OFF" too

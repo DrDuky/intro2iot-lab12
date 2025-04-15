@@ -1,10 +1,10 @@
 // === Automatic Room Light with Manual Override ===
 
-const int lightSensorPin = A0;   // Photoresistor connected to A0
-const int buttonPin = 2;         // Button connected to D2
-const int ledPin = 9;            // LED (room light) connected to D9
+const int lightSensorPin = A0;  // Photoresistor connected to A0
+const int buttonPin = 2;        // Button connected to D2
+const int ledPin = 9;           // LED (room light) connected to D9
 
-const int darkThreshold = 500;   // Adjust based on ambient light conditions
+const int darkThreshold = 500;  // Adjust based on ambient light conditions
 
 bool isDark = false;
 bool isButtonOn = false;
@@ -28,7 +28,7 @@ void loop() {
     Serial.println("LED: OFF");
   }
 
-  delay(200); // basic debounce + sampling interval
+  delay(200);  // basic debounce + sampling interval
 }
 
 // ===============================
@@ -39,14 +39,16 @@ bool isRoomDark() {
   Serial.println(lightLevel);
 
   // TODO: Fix this logic so it returns true when it's dark
-  return false; // <-- incorrect for now
+  return false;  // <-- incorrect for now
+  if (lightLevel < 100) return true;
+  else return false;
 }
 
 // ===============================
 // Manual Switch Control – Student 2
 bool isButtonActivated() {
   bool state = digitalRead(buttonPin);
-  
+
   Serial.print("Button: ");
 
   // TODO: Fix this logic and print the correct status
